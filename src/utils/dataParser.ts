@@ -12,7 +12,7 @@ export function parseCSVData(file: File): Promise<NormalizedDataRow[]> {
     Papa.parse<RawMMMDataRow>(file, {
       header: true,
       skipEmptyLines: true,
-      complete: (results) => {
+      complete: (results: Papa.ParseResult<RawMMMDataRow>) => {
         const normalizedData: NormalizedDataRow[] = [];
         
         results.data.forEach((row: any) => {
@@ -54,7 +54,7 @@ export function parseCSVData(file: File): Promise<NormalizedDataRow[]> {
         
         resolve(normalizedData);
       },
-      error: (error) => reject(error),
+      error: (error: Error) => reject(error),
     });
   });
 }

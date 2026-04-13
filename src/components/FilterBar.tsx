@@ -1,4 +1,3 @@
-import React from 'react';
 import type { DashboardContextType } from '../hooks/useDashboardData';
 
 interface FilterBarProps {

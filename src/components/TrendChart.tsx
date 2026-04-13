@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
 interface TrendChartProps {
@@ -15,11 +15,12 @@ export function TrendChart({ data }: TrendChartProps) {
     return tickItem.toLocaleString();
   };
 
-  const formatter = (value: number) => {
+  const formatter = (value: number | string) => {
+    const num = typeof value === 'number' ? value : parseFloat(String(value)) || 0;
     if (metric === 'mrr') {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
     }
-    return new Intl.NumberFormat('en-US').format(value);
+    return new Intl.NumberFormat('en-US').format(num);
   }
 
   return (
@@ -53,7 +54,7 @@ export function TrendChart({ data }: TrendChartProps) {
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" />
             <XAxis dataKey="monthStr" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'var(--muted-foreground)' }} dy={10} />
             <YAxis tickFormatter={formatYAxis} axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'var(--muted-foreground)' }} />
-            <Tooltip formatter={(value: number) => [formatter(value), ""]} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+            <Tooltip formatter={(value) => [formatter(value as number | string), ""]} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
             <Legend verticalAlign="top" height={36} iconType="circle" />
             <Area type="monotone" name="FTA" dataKey={`fta_${metric}`} stroke="var(--chart-fta)" strokeWidth={2} fillOpacity={1} fill="url(#colorFta)" />
             <Area type="monotone" name="MTA" dataKey={`mta_${metric}`} stroke="var(--chart-mta)" strokeWidth={2} fillOpacity={1} fill="url(#colorMta)" />

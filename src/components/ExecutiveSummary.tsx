@@ -1,4 +1,4 @@
-import React from 'react';
+// ExecutiveSummary component
 import type { AggregateMetrics } from '../utils/types';
 
 interface ExecutiveSummaryProps {

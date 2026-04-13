@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { UploadCloud } from 'lucide-react';
 import { parseCSVData } from '../utils/dataParser';
-import type { MMMDataRow } from '../utils/types';
+import type { NormalizedDataRow } from '../utils/types';
 
 interface FileUploaderProps {
-  onDataLoaded: (data: MMMDataRow[]) => void;
+  onDataLoaded: (data: NormalizedDataRow[]) => void;
 }
 
 export function FileUploader({ onDataLoaded }: FileUploaderProps) {

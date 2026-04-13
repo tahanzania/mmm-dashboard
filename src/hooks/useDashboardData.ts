@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import type { NormalizedDataRow, AggregateMetrics, PivotedMetrics } from '../utils/types';
+import type { NormalizedDataRow, PivotedMetrics } from '../utils/types';
 
 export type CompareMode = 'None' | 'MoM' | 'QoQ' | 'YoY' | 'CustomDate' | 'CustomChannel';
 

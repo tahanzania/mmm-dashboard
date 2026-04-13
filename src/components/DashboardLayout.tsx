@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDashboardData } from '../hooks/useDashboardData';
 import { FileUploader } from './FileUploader';
 import { FilterBar } from './FilterBar';

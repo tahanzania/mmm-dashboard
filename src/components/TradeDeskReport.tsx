@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from 'react';
+import { type ReactNode, useRef, useState, useMemo } from 'react';
 import type { NormalizedDataRow } from '../utils/types';
 import { FileDown, TrendingUp, TrendingDown, BarChart2, AlertTriangle } from 'lucide-react';
 import {
@@ -320,7 +320,7 @@ export function TradeDeskReport({ data }: Props) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="label" tick={{ fontSize: 11 }} />
                 <YAxis tick={{ fontSize: 11 }} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
-                <Tooltip formatter={(v: number) => fmt(v)} />
+                <Tooltip formatter={(v) => fmt(Number(v))} />
                 <Legend wrapperStyle={{ fontSize: '0.75rem' }} />
                 <Bar dataKey="fta_mrr" name="FTA MRR" fill="#3b82f6" radius={[4, 4, 0, 0]} barSize={16} />
                 <Bar dataKey="new_mta_mrr" name="New MTA MRR" fill="#f59e0b" radius={[4, 4, 0, 0]} barSize={16} />
@@ -419,7 +419,7 @@ export function TradeDeskReport({ data }: Props) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="label" tick={{ fontSize: 11 }} />
                 <YAxis tick={{ fontSize: 11 }} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
-                <Tooltip formatter={(v: number) => fmt(v)} />
+                <Tooltip formatter={(v) => fmt(Number(v))} />
                 <Legend wrapperStyle={{ fontSize: '0.75rem' }} />
                 <Bar dataKey="fta_mrr" name="FTA MRR" fill="#3b82f6" radius={[4, 4, 0, 0]} barSize={16} />
                 <Bar dataKey="new_mta_mrr" name="New MTA MRR" fill="#f59e0b" radius={[4, 4, 0, 0]} barSize={16} />
@@ -507,7 +507,7 @@ export function TradeDeskReport({ data }: Props) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="label" tick={{ fontSize: 11 }} />
                 <YAxis tick={{ fontSize: 11 }} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
-                <Tooltip formatter={(v: number) => fmt(v)} />
+                <Tooltip formatter={(v) => fmt(Number(v))} />
                 <Legend wrapperStyle={{ fontSize: '0.75rem' }} />
                 <Area type="monotone" dataKey="fta_mrr" name="FTA MRR" stroke="#3b82f6" fill="#3b82f620" strokeWidth={2} />
                 <Area type="monotone" dataKey="new_mta_mrr" name="New MTA MRR" stroke="#f59e0b" fill="#f59e0b20" strokeWidth={2} />
@@ -522,7 +522,7 @@ export function TradeDeskReport({ data }: Props) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="label" tick={{ fontSize: 11 }} />
                 <YAxis tick={{ fontSize: 11 }} tickFormatter={v => `${v.toFixed(0)}%`} />
-                <Tooltip formatter={(v: number) => `${v.toFixed(1)}%`} />
+                <Tooltip formatter={(v) => `${Number(v).toFixed(1)}%`} />
                 <Bar dataKey="gap_pct" name="MRR Gap %" radius={[4, 4, 0, 0]} barSize={24}>
                   {progChartData.map((d, i) => (
                     <Cell key={i} fill={d.gap_pct < 0 ? '#ef4444' : '#22c55e'} />
@@ -543,7 +543,7 @@ export function TradeDeskReport({ data }: Props) {
               <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
               <XAxis dataKey="label" tick={{ fontSize: 11 }} />
               <YAxis tick={{ fontSize: 11 }} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
-              <Tooltip formatter={(v: number) => fmt(v)} />
+              <Tooltip formatter={(v) => fmt(Number(v))} />
               <Legend wrapperStyle={{ fontSize: '0.75rem' }} />
               {progL2Keys.map((key, i) => (
                 <Bar key={key} dataKey={key} name={key || '(other)'} stackId="a" fill={l2Colors[key.toLowerCase()] || CHART_COLORS[i % CHART_COLORS.length]} />
@@ -715,7 +715,7 @@ export function TradeDeskReport({ data }: Props) {
 
 function SummaryCard({ title, subtitle, value, icon, accent }: {
   title: string; subtitle: string; value: string;
-  icon: React.ReactNode; accent: string;
+  icon: ReactNode; accent: string;
 }) {
   return (
     <div className="card" style={{ padding: '1.25rem 1.5rem' }}>
